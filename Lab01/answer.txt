@@ -1,0 +1,36 @@
+Câu 1: Điều gì xảy ra nếu người dùng chọn "Cancel"?
+
+Nếu người dùng chọn "Cancel" (hoặc nhấn dấu X để đóng cửa sổ), chương trình sẽ in ra thông báo: "You've chosen: No".
+
+Giải thích: Khi người dùng bấm "Cancel", hàm showConfirmDialog sẽ trả về giá trị của hằng số JOptionPane.CANCEL_OPTION (là số 2). Trong lệnh in kết quả, đoạn code đang dùng toán tử 3 ngôi: (option == JOptionPane.YES_OPTION ? "Yes" : "No"). Vì giá trị 2 không bằng với YES_OPTION (là số 0), nên biểu thức này tự động nhận kết quả sai là "No".
+
+Câu 2: Làm thế nào để tùy chỉnh các tùy chọn cho người dùng?
+
+Để tùy chỉnh các nút bấm, chúng ta có thể truyền thêm các tham số (parameters) vào các hàm của lớp JOptionPane theo Javadocs.
+
+Trường hợp A: Chỉ hiển thị hai tùy chọn "Yes" và "No"
+Sử dụng hàm showConfirmDialog nhưng truyền thêm tham số JOptionPane.YES_NO_OPTION ở cuối để ép nó chỉ hiện 2 nút:
+
+int option = JOptionPane.showConfirmDialog(null,
+"Do you want to change to the first class ticket?",
+"Tiêu đề cửa sổ",
+JOptionPane.YES_NO_OPTION);
+
+Trường hợp B: Hiển thị chữ tùy chỉnh "Tôi đồng ý" và "Tôi không đồng ý"
+Để thay đổi hoàn toàn chữ trên nút bấm, chúng ta chuyển sang dùng hàm linh hoạt hơn là showOptionDialog, kết hợp với một mảng (array) chứa các lựa chọn tự định nghĩa:
+
+Object[] options = {"Tôi đồng ý", "Tôi không đồng ý"};
+
+int option = JOptionPane.showOptionDialog(null,
+"Bạn có muốn đổi sang vé hạng nhất không?",
+"Xác nhận",
+
+JOptionPane.YES_NO_OPTION,
+
+JOptionPane.QUESTION_MESSAGE,
+
+null,
+
+options,
+
+options[0]);
