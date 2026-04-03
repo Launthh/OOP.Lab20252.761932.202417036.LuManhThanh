@@ -20,9 +20,6 @@ public class Aims {
         System.out.println("Total Cost is: ");
         System.out.println(anOrder.totalCost());
 
-        // ---------------------------------------------------
-        // PHẦN CODE CHO MỤC 11: KIỂM TRA TÍNH NĂNG XÓA
-        // ---------------------------------------------------
         System.out.println("\n--- Bắt đầu test xóa đĩa ---");
 
         // Gọi hàm xóa đĩa dvd2 (Star Wars) khỏi giỏ hàng
