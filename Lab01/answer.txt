@@ -1,0 +1,46 @@
+1. Xử lý khi người dùng chọn "Cancel" hoặc đóng cửa sổ:
+
+Giá trị trả về: Các phương thức như showConfirmDialog trả về một số nguyên (int).
+
+Hằng số tương ứng: * Nếu bấm Cancel: Trả về giá trị của JOptionPane.CANCEL_OPTION (thường là 2).
+
+Nếu bấm dấu X để đóng: Trả về giá trị của JOptionPane.CLOSED_OPTION (thường là -1).
+
+Cách xử lý trong code: Bạn nên dùng câu lệnh if để kiểm tra. Nếu giá trị trả về là các hằng số trên, bạn nên thoát phương thức hoặc thông báo người dùng chưa đưa ra lựa chọn.
+
+2. Cách tùy chỉnh số lượng và nhãn của các nút bấm:
+
+Cách A: Chỉ hiện 2 nút mặc định (Yes/No)
+Sử dụng tham số optionType là JOptionPane.YES_NO_OPTION.
+
+int result = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+Cách B: Tùy chỉnh văn bản bất kỳ (Ví dụ: "I do" và "I don't")
+Sử dụng phương thức showOptionDialog. Đây là phương thức linh hoạt nhất.
+
+Cấu trúc:
+JOptionPane.showOptionDialog(parent, message, title, optionType, messageType, icon, options, initialValue)
+
+Ví dụ Code cụ thể:
+
+// 1. Tạo mảng chứa tên các nút bạn muốn hiển thị
+Object[] options = {"I do", "I don't"};
+
+// 2. Gọi hộp thoại
+int n = JOptionPane.showOptionDialog(
+    null,                        // Thành phần cha (thường để null)
+    "Do you love programming?",  // Nội dung thông báo
+    "User Choice",               // Tiêu đề hộp thoại
+    JOptionPane.YES_NO_OPTION,   // Kiểu tùy chọn (Yes/No)
+    JOptionPane.QUESTION_MESSAGE,// Kiểu biểu tượng (Câu hỏi)
+    null,                        // Icon tùy chỉnh (null = mặc định)
+    options,                     // MẢNG CÁC NÚT TÙY CHỈNH (Quan trọng nhất)
+    options[0]                   // Nút mặc định khi nhấn Enter
+);
+
+// 3. Kiểm tra kết quả
+// n = 0 tương ứng với "I do", n = 1 tương ứng với "I don't"
+if (n == 0) {
+    System.out.println("Người dùng chọn: I do");
+} else if (n == 1) {
+    System.out.println("Người dùng chọn: I don't");
+}
