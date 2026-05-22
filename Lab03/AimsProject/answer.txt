@@ -1,0 +1,18 @@
+BÀI TẬP LAB 03 - CÂU TRẢ LỜI
+
+1. Mục 2.1: So sánh việc sử dụng số lượng đối số tùy ý (varargs) với tham số mảng. Bạn thích cách nào hơn trong trường hợp này?
+- So sánh: Cả varargs (DigitalVideoDisc... dvds) và tham số mảng (DigitalVideoDisc[] dvdList) đều cho phép truyền nhiều phần tử vào phương thức. Về bản chất, Java xử lý varargs tương tự như một mảng. Sự khác biệt nằm ở cú pháp khi gọi hàm: với mảng, người gọi phải khởi tạo một đối tượng mảng rõ ràng; với varargs, người gọi chỉ cần liệt kê các đối tượng ngăn cách bằng dấu phẩy.
+- Lựa chọn: Tôi thích sử dụng varargs hơn vì nó giúp cú pháp gọi hàm ngắn gọn, linh hoạt và dễ đọc hơn (ví dụ: cart.addDigitalVideoDisc(dvd1, dvd2) thay vì phải viết thêm từ khóa new).
+
+2. Mục 3: JAVA là ngôn ngữ lập trình truyền tham trị (Pass by Value) hay truyền tham chiếu (Pass by Reference)?
+- Java hoàn toàn là ngôn ngữ truyền tham trị (Pass by Value). Khi truyền một đối tượng vào phương thức, Java sẽ tạo ra một bản sao của tham chiếu (địa chỉ bộ nhớ) trỏ đến đối tượng đó và truyền bản sao này vào hàm, chứ không truyền chính tham chiếu gốc hay bản thân đối tượng đó.
+
+3. Mục 3: Sau khi gọi hàm swap(jungleDVD, cinderellaDVD), tại sao tiêu đề của hai đối tượng này vẫn giữ nguyên?
+- Nguyên nhân là do cơ chế truyền tham trị của Java. Phương thức swap() nhận được các bản sao của địa chỉ bộ nhớ trỏ đến hai đối tượng. Việc tráo đổi hai biến cục bộ (o1 và o2) bên trong phương thức chỉ làm thay đổi các bản sao địa chỉ này. Các tham chiếu gốc ở hàm main (jungleDVD và cinderellaDVD) vẫn giữ nguyên địa chỉ ban đầu và tiếp tục trỏ đến các đối tượng cũ, do đó thông tin tiêu đề không thay đổi.
+
+4. Mục 3: Sau khi gọi hàm changeTitle(jungleDVD, cinderellaDVD.getTitle()), tại sao tiêu đề của JungleDVD lại thay đổi?
+- Mặc dù Java truyền tham chiếu bằng giá trị, nhưng cả tham chiếu gốc (jungleDVD) và tham chiếu bản sao (biến dvd trong phương thức) đều trỏ đến cùng một đối tượng thực tế trong bộ nhớ heap. Khi ta gọi phương thức làm thay đổi dữ liệu như dvd.setTitle(title), nó sẽ sửa đổi trực tiếp nội dung của đối tượng đó. Vì cả hai tham chiếu cùng trỏ vào một chỗ, nên thay đổi này sẽ xuất hiện khi ta truy cập qua tham chiếu gốc ở hàm main.
+(Lưu ý: Dòng lệnh 'dvd = new DigitalVideoDisc(oldTitle)' trong phương thức chỉ gán lại bản sao cục bộ sang một đối tượng mới, không ảnh hưởng đến đối tượng gốc).
+
+5. Mục 6: Viết phương thức toString() cho lớp DigitalVideoDisc. Kiểu trả về của phương thức này là gì?
+- Kiểu trả về của phương thức toString() phải là 'String'. Mục đích của nó là ghi đè (override) phương thức mặc định của lớp Object để trả về một chuỗi văn bản mô tả đầy đủ thông tin của đĩa DVD (như tiêu đề, thể loại, giá tiền...).

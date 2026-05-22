@@ -1,0 +1,11 @@
+Câu hỏi ở Mục 8: 
+Nếu bạn tạo một phương thức khởi tạo để xây dựng DVD theo tiêu đề (title), sau đó tạo một phương thức khởi tạo để xây dựng DVD theo danh mục (category). JAVA có cho phép bạn làm điều này không?
+
+Trả lời: 
+KHÔNG, Java không cho phép điều này.
+
+Giải thích:
+Cả hai thuộc tính "title" (tiêu đề) và "category" (danh mục) đều có cùng kiểu dữ liệu là chuỗi (String). Trong ngôn ngữ Java, kỹ thuật nạp chồng phương thức (method overloading) yêu cầu các constructor phải có danh sách tham số khác biệt nhau (khác về số lượng tham số, kiểu dữ liệu của tham số, hoặc thứ tự các kiểu dữ liệu). 
+
+Nếu bạn tạo một constructor cho title và một constructor khác cho category, cả hai sẽ có chung một cấu trúc tham số y hệt nhau là: DigitalVideoDisc(String). Trình biên dịch của Java sẽ không thể phân biệt được hai constructor này và sẽ báo lỗi trùng lặp phương thức (Duplicate method).
+
